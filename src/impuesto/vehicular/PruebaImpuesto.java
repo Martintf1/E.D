@@ -15,6 +15,8 @@ public class PruebaImpuesto {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        ControlImpuesto objcpntrolimpuesto= new ControlImpuesto();
+        objcpntrolimpuesto.menu();
     }
     
 }
