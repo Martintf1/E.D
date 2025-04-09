@@ -22,7 +22,7 @@ public class ControlImpuesto {
         System.out.println("...REGISTRO VEHICULO...");
         System.out.print("Digite el numero de placa: ");
         String placa = in.nextLine();
-        in.nextLine();
+        //in.nextLine();
         System.out.print("Digite el numero del motor: ");
         int numeroMotor = in.nextInt();
         System.out.print("Digite el valor a pagar: ");
@@ -54,12 +54,12 @@ public class ControlImpuesto {
         System.out.println("...BUSCAR VEHICULO POR NUMERO DE PLACA...");
         System.out.print("Digite placa a buscar: ");
         String placaBuscar = in.nextLine();
-
+        System.out.println("PLACA / NUMERO DE MOTOR / VALOR A PAGAR / PROPIETARIO / MODELO");
         for (int i = 0; i < vehiculos.size(); i++) { //recorrer toda la lista, .size el tamaño de la lista vehiculo, lista dinamica
-            Vehiculo recuperar = (Vehiculo) vehiculos.get(i);  // ----
+            Vehiculo recuperar = (Vehiculo) vehiculos.get(i);  //Como vehiculos.get(i) devuelve un Object, necesitas decirle explícitamente a Java que ese objeto es del tipo Vehiculo.
             if (recuperar.getPlaca().equalsIgnoreCase(placaBuscar)) { //comparar ignorando may de min
                 bandera = true;
-                System.out.println("PLACA: " + recuperar.getPlaca() + "\nNUMERO DE MOTOR: " + recuperar.getNumeroMotor() + "\nVALOR A PAGAR:" + recuperar.getValorPagar() + "\nPROPIETARIO:" + recuperar.getPropietario() + "\nMODELO:" + recuperar.getModelo());
+                System.out.println(recuperar.getPlaca() + " / " + recuperar.getNumeroMotor() + " / " + recuperar.getValorPagar() + "$ / " + recuperar.getPropietario() + " / " + recuperar.getModelo());
             }
         }
 
@@ -75,12 +75,13 @@ public class ControlImpuesto {
         System.out.println("...BUSCAR VEHICULO POR MODELO...");
         System.out.print("Digite modelo de vehiculo a buscar: ");
         String modeloBuscar = in.nextLine();
+        System.out.println("PLACA / NUMERO DE MOTOR / VALOR A PAGAR / PROPIETARIO / MODELO");
 
         for (int i = 0; i < vehiculos.size(); i++) { //buscar en la lista 
-            Vehiculo recuperar = (Vehiculo) vehiculos.get(i); //---
+            Vehiculo recuperar = (Vehiculo) vehiculos.get(i); //Como vehiculos.get(i) devuelve un Object, necesitas decirle explícitamente a Java que ese objeto es del tipo Vehiculo.
             if (recuperar.getModelo().equalsIgnoreCase(modeloBuscar)) {
                 bandera = true;
-                System.out.println("PLACA: " + recuperar.getPlaca() + "\nNUMERO DE MOTOR: " + recuperar.getNumeroMotor() + "\nVALOR A PAGAR:" + recuperar.getValorPagar() + "\nPROPIETARIO:" + recuperar.getPropietario() + "\nMODELO:" + recuperar.getModelo());
+                System.out.println(recuperar.getPlaca() + " / " + recuperar.getNumeroMotor() + " / " + recuperar.getValorPagar() + "$ / " + recuperar.getPropietario() + " / " + recuperar.getModelo());
             }
         }
 
@@ -92,8 +93,10 @@ public class ControlImpuesto {
     void guardarNumMotor() {
         numMotor = new int[vehiculos.size()];
         for (int i = 0; i < vehiculos.size(); i++) {
-            Vehiculo recuperar = (Vehiculo) vehiculos.get(i); //----
+            Vehiculo recuperar = (Vehiculo) vehiculos.get(i); //Como vehiculos.get(i) devuelve un Object, necesitas decirle explícitamente a Java que ese objeto es del tipo Vehiculo.
             numMotor[i] = recuperar.getNumeroMotor();  //guardar los numeros del motor en el arreglo num mtor
+            System.out.print(numMotor[i] + " - ");
+            System.out.println("");
         }
         System.out.println("NUMEROS DE MOTOR GUARDADOS");
     }
@@ -147,11 +150,15 @@ public class ControlImpuesto {
             numMotor[moverElemento] = insercion; // coloca el elemento insertado
             //imprimirPasada( siguiente, moverElemento ); // imprime la pasada del algoritmo
         }
+        System.out.println("\n---Arreglo ordenado por metodo Inserccion----");
+        for (int i : numMotor) {
+            System.out.print(i + "-");
+        }
     }
 
     void buscar() {
         System.out.println("Buscanco...");
-        System.out.print("Digite el numero a buscar: ");
+        System.out.print("Digite el numero de motor a buscar: ");
         int numBuscado = in.nextInt();
 
         //llamo al metodo del algortimo de busqueda binaria
@@ -160,7 +167,10 @@ public class ControlImpuesto {
         if (datoRet == -1) {
             System.out.println("Numero no Encontrado!!");
         } else {
-            System.out.println("Encontrado. Posicion=" + datoRet);
+            Vehiculo recuperar = (Vehiculo) vehiculos.get(datoRet);
+            System.out.println("Encontrado.");
+            System.out.println("PLACA / NUMERO DE MOTOR / VALOR A PAGAR / PROPIETARIO / MODELO");
+            System.out.println(recuperar.getPlaca() + " / " + recuperar.getNumeroMotor() + " / " + recuperar.getValorPagar() + "$ / " + recuperar.getPropietario() + " / " + recuperar.getModelo());
         }
 
     }
@@ -188,18 +198,19 @@ public class ControlImpuesto {
     }
 
     void menu() {
-        int opc = 0;
+        int opc;
         do {
-            System.out.println("""
-                               Muenu:
-                               1.registro
-                               2.buscar vehiculo por placa
-                               3. buscar modelo
-                               4. guardar numero de motor
-                               5.ordenar por burbuja
-                               6.ordenar por insercion
-                               7. buscar numero de motorusando busqueda binaria
-                               seleccione una opcion;
+            System.out.print("""
+                               \tMENU:
+                               1.Registro
+                               2.Buscar vehiculo por placa
+                               3.Buscar modelo
+                               4.Guardar numero de motor
+                               5.Ordenar por burbuja
+                               6.Ordenar por insercion
+                               7.Buscar numero de motorusando busqueda binaria
+                               8.Salir
+                               seleccione una opcion:
                                """);
             opc = in.nextInt();
             switch (opc) {
@@ -223,7 +234,7 @@ public class ControlImpuesto {
                     break;
                 case 7:
                     this.buscar();
-                    this.busquedaBinaria(numMotor.length);
+
                     break;
 
             }
