@@ -54,7 +54,7 @@ public class ControlImpuesto {
         System.out.println("...BUSCAR VEHICULO POR NUMERO DE PLACA...");
         System.out.print("Digite placa a buscar: ");
         String placaBuscar = in.nextLine();
-        System.out.println("PLACA / NUMERO DE MOTOR / VALOR A PAGAR / PROPIETARIO / MODELO");
+        System.out.println("PLACA/NUMERO DE MOTOR/VALOR A PAGAR/PROPIETARIO/MODELO");
         for (int i = 0; i < vehiculos.size(); i++) { //recorrer toda la lista, .size el tamaño de la lista vehiculo, lista dinamica
             Vehiculo recuperar = (Vehiculo) vehiculos.get(i);  //Como vehiculos.get(i) devuelve un Object, necesitas decirle explícitamente a Java que ese objeto es del tipo Vehiculo.
             if (recuperar.getPlaca().equalsIgnoreCase(placaBuscar)) { //comparar ignorando may de min
@@ -75,7 +75,7 @@ public class ControlImpuesto {
         System.out.println("...BUSCAR VEHICULO POR MODELO...");
         System.out.print("Digite modelo de vehiculo a buscar: ");
         String modeloBuscar = in.nextLine();
-        System.out.println("PLACA / NUMERO DE MOTOR / VALOR A PAGAR / PROPIETARIO / MODELO");
+        System.out.println("PLACA/NUMERO DE MOTOR/VALOR A PAGAR/PROPIETARIO/MODELO");
 
         for (int i = 0; i < vehiculos.size(); i++) { //buscar en la lista 
             Vehiculo recuperar = (Vehiculo) vehiculos.get(i); //Como vehiculos.get(i) devuelve un Object, necesitas decirle explícitamente a Java que ese objeto es del tipo Vehiculo.
@@ -165,11 +165,11 @@ public class ControlImpuesto {
         int datoRet = this.busquedaBinaria(numBuscado);
 
         if (datoRet == -1) {
-            System.out.println("Numero no Encontrado!!");
+            System.out.println("Numero de motor no Encontrado!!");
         } else {
             Vehiculo recuperar = (Vehiculo) vehiculos.get(datoRet);
             System.out.println("Encontrado.");
-            System.out.println("PLACA / NUMERO DE MOTOR / VALOR A PAGAR / PROPIETARIO / MODELO");
+            System.out.println("PLACA/NUMERO DE MOTOR/VALOR A PAGAR/PROPIETARIO/MODELO");
             System.out.println(recuperar.getPlaca() + " / " + recuperar.getNumeroMotor() + " / " + recuperar.getValorPagar() + "$ / " + recuperar.getPropietario() + " / " + recuperar.getModelo());
         }
 
@@ -201,6 +201,7 @@ public class ControlImpuesto {
         int opc;
         do {
             System.out.print("""
+                             |------------------------------------|
                                \tMENU:
                                1.Registro
                                2.Buscar vehiculo por placa
@@ -234,9 +235,10 @@ public class ControlImpuesto {
                     break;
                 case 7:
                     this.buscar();
-
                     break;
-
+                case 8:
+                    System.out.println("Saliendo...");
+                    break;
             }
 
         } while (opc != 8);
